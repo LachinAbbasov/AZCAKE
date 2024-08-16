@@ -14,6 +14,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+}, {
+  versionKey: false // This will prevent Mongoose from including the `__v` field.
 });
 
 const User = mongoose.model('User', userSchema);
