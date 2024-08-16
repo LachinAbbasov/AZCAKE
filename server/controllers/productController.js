@@ -1,8 +1,8 @@
 const Product = require('../models/Product');
 
-const getProducts = (category) => async (req, res) => {
+const getProducts = async (req, res) => {
   try {
-    const products = await Product.find({ category });
+    const products = await Product.find({ category: req.params.category });
     res.json(products);
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
