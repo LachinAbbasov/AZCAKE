@@ -1,32 +1,25 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerUser } from '../slices/userSlice/'; 
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const { status, error, token } = useSelector((state) => state.user);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    try {
-      const response = await axios.post('http://localhost:4756/api/users/register', {
-        name,
-        email,
-        password,
-      });
-
-      if (response.data.token) {
-        localStorage.setItem('token', response.data.token);
-        navigate('/dashboard'); // Or another route after successful registration
-      }
-    } catch (err) {
-      setError('Error registering user');
-    }
+    dispatch(registerUser({ name, email, password }));
   };
+
+  if (token) {
+    navigate('/dashboard');
+  }
 
   return (
     <div>
@@ -62,7 +55,9 @@ const Register = () => {
             required
           />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit" disabled={status === 'loading'}>
+          {status === 'loading' ? 'Registering...' : 'Register'}
+        </button>
       </form>
       {error && <p>{error}</p>}
     </div>

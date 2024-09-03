@@ -1,30 +1,24 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../slices/userSlice/';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const { status, error, token } = useSelector((state) => state.user);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    try {
-      const response = await axios.post('http://localhost:4756/api/users/login', {
-        email,
-        password,
-      });
-
-      if (response.data.token) {
-        localStorage.setItem('token', response.data.token);
-        navigate('/dashboard'); // Or another route after successful login
-      }
-    } catch (err) {
-      setError('Invalid credentials');
-    }
+    dispatch(loginUser({ email, password }));
   };
+
+  if (token) {
+    navigate('/dashboard'); // Kullanıcı giriş yaptıysa Dashboard sayfasına yönlendirilir
+  }
 
   return (
     <div>
@@ -50,7 +44,9 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" disabled={status === 'loading'}>
+          {status === 'loading' ? 'Logging in...' : 'Login'}
+        </button>
       </form>
       {error && <p>{error}</p>}
     </div>
