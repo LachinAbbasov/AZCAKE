@@ -1,0 +1,147 @@
+
+/* Responsive Media Queries */
+
+/* Telefonlar (320px - 480px) */
+@media (max-width: 480px) {
+    .heading {
+      font-size: 1.5rem;
+    }
+  
+    .form {
+      padding: 1rem;
+    }
+  
+    .input {
+      padding: 0.6rem;
+      font-size: 0.9rem;
+    }
+  
+    .button {
+      font-size: 1rem;
+      padding: 0.6rem;
+    }
+  }
+  
+  /* Tabletler (481px - 768px) */
+  @media (min-width: 481px) and (max-width: 768px) {
+    .heading {
+      font-size: 1.8rem;
+    }
+  
+    .form {
+      padding: 1.2rem;
+    }
+  
+    .input {
+      padding: 0.7rem;
+      font-size: 1rem;
+    }
+  
+    .button {
+      font-size: 1.1rem;
+      padding: 0.7rem;
+    }
+  }
+  
+  /* Küçük laptoplar (769px - 1024px) */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .heading {
+      font-size: 2rem;
+    }
+  
+    .form {
+      padding: 1.5rem;
+    }
+  
+    .input {
+      padding: 0.75rem;
+      font-size: 1rem;
+    }
+  
+    .button {
+      font-size: 1.2rem;
+      padding: 0.75rem;
+    }
+  }
+  
+  /* Büyük laptoplar ve küçük masaüstü bilgisayarlar (1025px - 1440px) */
+  @media (min-width: 1025px) and (max-width: 1440px) {
+    .heading {
+      font-size: 2.2rem;
+    }
+  
+    .form {
+      padding: 1.5rem;
+    }
+  
+    .input {
+      padding: 0.75rem;
+      font-size: 1.1rem;
+    }
+  
+    .button {
+      font-size: 1.3rem;
+      padding: 0.8rem;
+    }
+  }
+  
+  /* Büyük masaüstü bilgisayarlar ve TV'ler (1441px ve üstü) */
+  @media (min-width: 1441px) {
+    .heading {
+      font-size: 2.5rem;
+    }
+  
+    .form {
+      padding: 2rem;
+    }
+  
+    .input {
+      padding: 0.9rem;
+      font-size: 1.2rem;
+    }
+  
+    .button {
+      font-size: 1.4rem;
+      padding: 0.9rem;
+    }
+  }
+
+  /* Küçük telefonlar için (320px ve daha küçük) */
+@media (max-width: 320px) {
+    .heading {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+  
+    .form {
+      padding: 0.8rem;
+    }
+  
+    .inputContainer {
+      margin-bottom: 1rem;
+    }
+  
+    .input {
+      padding: 0.5rem;
+      font-size: 0.85rem;
+    }
+  
+    .button {
+      font-size: 0.9rem;
+      padding: 0.5rem;
+    }
+  
+    .eye-icon {
+      font-size: 1rem;
+      right: 8px;
+    }
+  
+    .error {
+      font-size: 0.85rem;
+    }
+  
+    label {
+      font-size: 0.85rem;
+    }
+  }
+  

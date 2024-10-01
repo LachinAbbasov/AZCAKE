@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+require('events').EventEmitter.defaultMaxListeners = 20; 
 const productRoutes = require('./routes/productRoutes');
 const userRoutes = require('./routes/userRoutes');
 const authMiddleware = require('./middlewares/authMiddleware');
@@ -24,10 +25,8 @@ mongoose.connect(process.env.MONGO_URI)
   });
 
 
-
-// Korunacak rotalar için authMiddleware'i kullan
 app.use('/api/bakery', authMiddleware, productRoutes);
-app.use('/api/users', userRoutes);
+app.use('/api/users', authMiddleware, userRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello from the backend!');

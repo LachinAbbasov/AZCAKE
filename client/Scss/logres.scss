@@ -1,0 +1,35 @@
+.inputContainer {
+    position: relative; 
+    margin-bottom: 1.5rem;
+  }
+  
+  .input {
+    width: 100%;
+    padding: 0.75rem;
+    padding-right: 2.5rem; 
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  
+    &:focus {
+      border-color: #d35400;
+    }
+  }
+  
+  .eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(23%);
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #999;
+    transition: color 0.3s ease;
+  
+    &:hover {
+      color: #d35400; 
+    }
+  }
+  
