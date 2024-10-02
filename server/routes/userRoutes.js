@@ -10,9 +10,12 @@ router.post('/register', registerUser);
 router.post('/login', loginUser);
 
 
-router.get('/users', authMiddleware,async (req, res) => {
+router.get('/users', async (req, res) => {
     try {
-        const users = await User.find();
+        const users = await User.find({}, '-password');  // Exclude 'password' field
+        if (!users || users.length === 0) {
+            return res.status(404).json({ message: 'No users found' });
+        }
         res.json(users);
     } catch (err) {
         res.status(500).json({ message: 'Server error' });
@@ -20,7 +23,8 @@ router.get('/users', authMiddleware,async (req, res) => {
 });
 
 
-router.get('/users/:id', async (req, res) => {
+
+router.get('/users/:id',authMiddleware, async (req, res) => {
     try {
         const user = await User.findById(req.params.id);
         if (!user) {
@@ -33,7 +37,7 @@ router.get('/users/:id', async (req, res) => {
 });
 
 
-router.delete('/users/:id', async (req, res) => {
+router.delete('/users/:id',authMiddleware, async (req, res) => {
     try {
         const user = await User.findByIdAndDelete(req.params.id);
         if (!user) {

@@ -58,9 +58,11 @@ const userSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.userInfo = action.payload; 
-        state.token = action.payload.token; 
+        state.userInfo = action.payload.user;  // Backend cavabından istifadəçi məlumatlarını alırıq
+        state.token = action.payload.token;    // Tokeni cavabdan alırıq
+        localStorage.setItem('token', action.payload.token); // Tokeni localStorage-a saxlayırıq
       })
+      
       .addCase(registerUser.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload.message || 'Failed to register';
@@ -72,9 +74,11 @@ const userSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.userInfo = action.payload.user; 
-        state.token = action.payload.token; 
+        state.userInfo = action.payload.user;  // Backend cavabından istifadəçi məlumatlarını alırıq
+        state.token = action.payload.token;    // Tokeni cavabdan alırıq
+        localStorage.setItem('token', action.payload.token); // Tokeni localStorage-a saxlayırıq
       })
+      
       .addCase(loginUser.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload.message || 'Failed to login';

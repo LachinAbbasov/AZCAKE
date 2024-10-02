@@ -33,7 +33,10 @@ const registerUser = async (req, res) => {
       { expiresIn: '1h' },
       (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        res.json({ 
+          token, 
+          user: { id: user.id, name: user.name, email: user.email }  // İstifadəçi məlumatlarını qaytarırıq
+        });
       }
     );
 
@@ -71,14 +74,16 @@ const loginUser = async (req, res) => {
       { expiresIn: '1h' },
       (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        res.json({ 
+          token, 
+          user: { id: user.id, name: user.name, email: user.email }  // İstifadəçi məlumatlarını qaytarırıq
+        });
       }
     );
   } catch (err) {
     res.status(500).json({ message: 'Server error' });
   }
 };
-
 module.exports = {
   registerUser,
   loginUser,
